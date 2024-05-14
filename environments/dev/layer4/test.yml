@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-nginx-ingress
+spec:
+  ingressClassName: azure-application-gateway
+  rules:
+  - host: kennybk.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: test-nginx-service
+            port:
+              number: 80
