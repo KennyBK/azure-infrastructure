@@ -1,6 +1,6 @@
 data "azurerm_application_gateway" "appgw" {
   resource_group_name = "azure-aks-rg"
-  name = "azure-aks-appgw"
+  name                = "azure-aks-appgw"
 }
 
 data "azurerm_resource_group" "rg" {

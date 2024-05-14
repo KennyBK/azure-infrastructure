@@ -13,5 +13,5 @@ resource "azurerm_role_assignment" "attach_aks_to_acr" {
   scope                            = azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true
 
-  depends_on = [ azurerm_container_registry.acr ]
+  depends_on = [azurerm_container_registry.acr]
 }

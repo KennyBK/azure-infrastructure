@@ -1,5 +1,5 @@
 resource "azurerm_private_endpoint" "private_endpoint" {
-    for_each = var.private_endpoint
+  for_each = var.private_endpoint
 
   name                = each.value.name
   location            = each.value.location

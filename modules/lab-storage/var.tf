@@ -11,7 +11,7 @@ variable "storage_account" {
 
 variable "containers" {
   default = {}
-  
+
   type = map(object({
     name                  = string
     container_access_type = string

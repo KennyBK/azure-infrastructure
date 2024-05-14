@@ -15,7 +15,7 @@ variable "key_vault" {
 
 variable "secrets" {
   default = {}
-  
+
   type = map(object({
     name     = string
     key_name = optional(string)

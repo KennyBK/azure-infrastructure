@@ -33,7 +33,7 @@ variable "public_ip" {
     resource_group_name = string
     location            = string
     allocation_method   = string
-    sku = optional(string)
+    sku                 = optional(string)
   })
 }
 

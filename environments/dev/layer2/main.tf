@@ -1,36 +1,14 @@
-# module "nsg" {
-#   source = "../../../modules/lab-network-security-group"
-
-#   for_each = try(var.layer2.nsg, {})
-
-#   network_security_groups = each.value.nsg_map
-
-#   tags = var.layer2.tag
-# }
-
-# module "ddos" {
-#   source = "../../../modules/lab-ddos-protection-plan"
-
-#   for_each = try(var.layer2.ddos, {})
-
-#   ddos_protection_plan = each.value.ddos_object
-#   tags                 = var.layer2.tag
-
-# }
 
 module "network" {
   source = "../../../modules/lab-networking"
 
   for_each = try(var.layer2.network, {})
 
-  virtual_network         = each.value.virtual_network
-  # ddos_protection_plan_id = try(module.ddos[each.value.ddos_module_key].ddos_id, null)
+  virtual_network = each.value.virtual_network
 
   subnets = each.value.subnets
 
   public_ip = each.value.public_ip
-
-  # nsgs_id = module.nsg[each.value.nsg_module_key].nsgs_id
 
   tags = var.layer2.tag
 }

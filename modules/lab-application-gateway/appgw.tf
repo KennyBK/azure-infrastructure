@@ -46,15 +46,15 @@ resource "azurerm_application_gateway" "appgw" {
   request_routing_rule {
     name                       = var.appgw.request_routing_rule.name
     rule_type                  = var.appgw.request_routing_rule.rule_type
-    priority = var.appgw.request_routing_rule.priority
+    priority                   = var.appgw.request_routing_rule.priority
     http_listener_name         = var.appgw.request_routing_rule.http_listener_name
     backend_address_pool_name  = var.appgw.request_routing_rule.backend_address_pool_name
     backend_http_settings_name = var.appgw.request_routing_rule.backend_http_settings_name
   }
 
   waf_configuration {
-    enabled = var.appgw.waf_configuration.enabled
-    firewall_mode = var.appgw.waf_configuration.firewall_mode
+    enabled          = var.appgw.waf_configuration.enabled
+    firewall_mode    = var.appgw.waf_configuration.firewall_mode
     rule_set_version = var.appgw.waf_configuration.rule_set_version
   }
 

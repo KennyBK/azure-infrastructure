@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   location            = var.virtual_machine.location
   size                = var.virtual_machine.size
   admin_username      = var.virtual_machine.admin_username
-  admin_password = var.virtual_machine.admin_password
+  admin_password      = var.virtual_machine.admin_password
   network_interface_ids = [
     azurerm_network_interface.nic.id,
   ]
@@ -26,7 +26,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   admin_ssh_key {
     username   = var.virtual_machine.admin_ssh_key.username
     public_key = var.ssh_key_public_key
-    
+
   }
 
   os_disk {
