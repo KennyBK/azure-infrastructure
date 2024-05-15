@@ -5,7 +5,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = var.aks.dns_prefix
   sku_tier            = var.aks.sku_tier
 
-
+  oidc_issuer_enabled = var.aks.oidc_issuer_enabled
+  workload_identity_enabled = var.aks.workload_identity_enabled
+  
   default_node_pool {
     name           = var.aks.default_node_pool.name
     vm_size        = var.aks.default_node_pool.vm_size

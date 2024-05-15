@@ -10,6 +10,9 @@ variable "aks" {
     dns_prefix          = optional(string)
     sku_tier            = optional(string)
 
+    oidc_issuer_enabled = optional(bool)
+    workload_identity_enabled = optional(bool)
+
     default_node_pool = object({
       name       = string
       vm_size    = string
