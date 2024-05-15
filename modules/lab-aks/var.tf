@@ -25,6 +25,11 @@ variable "aks" {
       service_cidr   = string
       dns_service_ip = string
     }))
+
+    key_vault_secrets_provider = optional(object({
+      secret_rotation_enabled = bool
+      secret_rotation_interval = string
+    }))
   })
 }
 
