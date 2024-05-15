@@ -33,12 +33,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   tags = var.tags
 }
 
-# Assing necessary permissions to managed ingress controller identity
-resource "azurerm_role_assignment" "agic_contributor" {
-  principal_id         = azurerm_kubernetes_cluster.aks.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id
-  role_definition_name = "Contributor"
-  scope                = data.azurerm_application_gateway.appgw.id
-}
+# Assing necessary permissions to ingress controller managed identity
 
 resource "azurerm_role_assignment" "agic_rg_contributor" {
   principal_id         = azurerm_kubernetes_cluster.aks.ingress_application_gateway[0].ingress_application_gateway_identity[0].object_id

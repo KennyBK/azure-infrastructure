@@ -1,17 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aspnetapp
+  labels:
+    app: aspnetapp
+spec:
+  containers:
+  - image: "mcr.microsoft.com/dotnet/samples:aspnetapp"
+    name: aspnetapp-image
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnetapp
+spec:
+  selector:
+    app: aspnetapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+
+
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: test-nginx-ingress
+  name: aspnetapp
 spec:
   ingressClassName: azure-application-gateway
   rules:
-  - host: kennybk.site
-    http:
+  - http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           service:
-            name: test-nginx-service
+            name: aspnetapp
             port:
               number: 80
+        pathType: Exact
