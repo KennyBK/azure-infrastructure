@@ -31,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   key_vault_secrets_provider {
-    secret_rotation_enabled = var.aks.key_vault_secrets_provider.secret_rotation_enabled
+    secret_rotation_enabled  = var.aks.key_vault_secrets_provider.secret_rotation_enabled
     secret_rotation_interval = var.aks.key_vault_secrets_provider.secret_rotation_interval
   }
 

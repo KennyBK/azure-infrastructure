@@ -1,3 +1,11 @@
+resource "azurerm_public_ip" "vm_pip" {
+  name = var.public_ip.name
+  location = var.public_ip.location
+  resource_group_name = var.public_ip.resource_group_name
+
+  allocation_method = var.public_ip.allocation_method
+}
+
 resource "azurerm_network_interface" "nic" {
   name                = var.network_interface.name
   location            = var.network_interface.location
@@ -7,8 +15,10 @@ resource "azurerm_network_interface" "nic" {
     name                          = var.network_interface.ip_configuration.name
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = var.network_interface.ip_configuration.private_ip_address_allocation
+    public_ip_address_id = azurerm_public_ip.vm_pip.id
   }
 }
+
 
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                = var.virtual_machine.name
@@ -21,6 +31,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
     azurerm_network_interface.nic.id,
   ]
 
+  computer_name = var.virtual_machine.computer_name
   disable_password_authentication = var.virtual_machine.disable_password_authentication
 
   admin_ssh_key {
@@ -29,7 +40,12 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
 
   }
 
+  identity {
+    type = var.virtual_machine.identity.type
+  }
+
   os_disk {
+    name = var.virtual_machine.os_disk.name
     caching              = var.virtual_machine.os_disk.caching
     storage_account_type = var.virtual_machine.os_disk.storage_account_type
   }
